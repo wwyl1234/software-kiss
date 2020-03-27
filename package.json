@@ -1,10 +1,8 @@
 {
+    "name" : "software-kiss",
     "author" : "Winnie Lam",
     "description": "A blog about software and software-related things.",
     "keywords": ["blog", "KISS", "software", "freecodecamp"],
     "license": "UNLICENSED",
-    "version": "1.0.0",
-    "dependencies": {
-        "moment" : "2.14.0"
-    }
+    "version": "1.0.0"
 }
