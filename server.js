@@ -7,7 +7,7 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 
-const PORT=80; 
+const PORT = process.env.PORT || 80; 
 
 /* Load the homepage */
 app.use(express.static('public'));
