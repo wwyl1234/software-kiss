@@ -1,8 +1,30 @@
 {
-    "name" : "software-kiss",
-    "author" : "Winnie Lam",
-    "description": "A blog about software and software-related things.",
-    "keywords": ["blog", "KISS", "software", "freecodecamp"],
-    "license": "UNLICENSED",
-    "version": "1.0.0"
+  "name": "software-kiss",
+  "author": "Winnie Lam",
+  "description": "A blog about software and software-related things.",
+  "keywords": [
+    "blog",
+    "KISS",
+    "software",
+    "freecodecamp"
+  ],
+  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wwyl1234/software-kiss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wwyl1234/software-kiss/issues"
+  },
+  "homepage": "https://github.com/wwyl1234/software-kiss#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security"
+  }
 }
