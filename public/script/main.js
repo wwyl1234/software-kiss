@@ -1,3 +1,14 @@
+
+// When the window loads, get the most recent posts.
+window.onload = function() {
+    getMostRecentPosts();
+}
+
+
+
+
+
+
 // Loads the About Info in the content-container
 function getAboutInfo(){
     let info = `<h2>About</h2>
@@ -9,10 +20,31 @@ function getAboutInfo(){
     element.innerHTML = info;
 }
 
-// Loads the Posts of the blog
-function getPosts(){
-    // TODO add AJAX to get posts from database
-    let info = '';
-    let element = document.getElementById('content-container');
-    element.innerHTML = info;
+// Loads the first 10 Posts of the blog
+function getMostRecentPosts(){
+    console.log('DEBUG')
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'posts/recent/0/10');
+    xhr.onload = function() {
+    if (xhr.status === 200) {
+        console.log(xhr.responseText)
+        let array = JSON.parse(xhr.responseText)
+        console.log(array);
+        let info = '';
+        for (let row of array) {
+            info += `<div class='post'>`
+            info += `<h2>${row.name}</h2>`
+            info += `${row.content}` 
+            info += `</div>`
+         }
+        let element = document.getElementById('content-container');
+        element.innerHTML = info;
+    }
+    else {
+        alert('Request failed.  Returned status of ' + xhr.status);
+    }
+    };
+    xhr.send();
+    
+   
 }

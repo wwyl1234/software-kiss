@@ -144,3 +144,9 @@ h1 span {
 
   }
 
+  /* Style the class post */
+  .post{
+    border-left: 0.1em solid black;
+    border-bottom: 0.1em solid black;
+    padding: 1em;
+  }
