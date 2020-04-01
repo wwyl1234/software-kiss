@@ -17,13 +17,10 @@
             <navbar class='topnav'>
                 <a onclick='getMostRecentPosts()'>Home</a>
                 <a onclick='getAboutInfo()'>About</a>
-                <div class="login-container">
-                    <form action="/action_page.php">
-                      <input type="text" placeholder="Username" name="username">
-                      <input type="text" placeholder="Password" name="psw">
-                      <button type="submit">Login</button>
-                    </form>
-                </div>
+                <a onclick='login()'>Login</a>
+                <!--  Removing this for now as functionality for add post has not been added yet.
+                    <a onclick='addPost()'><span class='needAuth'>Add Post</span></a>
+                -->
             </navbar>
         </div>
         <div id='main-container' class='flex-container'>
@@ -35,5 +32,19 @@
             <div id='filler-right'> 
             </div>
         </div>
+        <div class="form-popup" id="myForm">
+            <form action="/auth" class="form-container" method="post">
+              <h1>Login</h1>
+          
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="email" id="email" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" id="psw"required>
+          
+              <button type="submit" class="btn">Login</button>
+              <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+          </div> 
     </body>
 </html>

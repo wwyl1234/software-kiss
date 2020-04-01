@@ -105,3 +105,37 @@ app.listen(PORT, function() {
       })
     })
  });
+
+
+ /* RESTAPI call POST /auth with email and psw */
+ app.post("/auth", (req, response, next) => {
+  console.log(req);
+  let email = req.body.email;
+  let psw = req.body.psw;
+  let query = `SELECT psw FROM credentials WHERE email = '${email}';`
+  console.log(query);
+
+ // use a promise to checkout a client
+ POOL
+   .connect()
+   .then(client => {
+     return client
+       .query(query)
+       .then(res => {
+         // Check that res is not empty and matches with password
+         let result = {}
+         if (res.rows.length != 0 && res.rows[0]["psw"] == psw) {
+            result["sucess"] = true;
+         } else {
+          result["sucess"] = false;
+         }
+         response.send(result);
+         client.release()
+         console.log(result)
+     })
+     .catch(err => {
+       client.release()
+       console.log(err.stack)
+     })
+   })
+});

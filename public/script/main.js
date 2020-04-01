@@ -48,3 +48,25 @@ function getMostRecentPosts(){
     
    
 }
+
+/* Add Post */
+function addPost(){
+    // TODO authenticate or check it it is authenticated
+    // Launch a form to get info about post
+
+}
+
+function login(){
+    // Get info to login
+    openForm();
+
+}
+
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  } 
