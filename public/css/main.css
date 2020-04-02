@@ -34,7 +34,7 @@ h1 span {
    
   }
   
-  /* Navbar links */
+/* Navbar links */
   .topnav a {
     float: left;
     display: block;
@@ -89,9 +89,11 @@ h1 span {
     background-color: white;
     width: 60%;
     flex-grow: 3;
+    overflow-y: hidden;
+    height: 100%;
 }
   
-  /* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
+/* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
   @media screen and (max-width: 600px) {
     .topnav .login-container {
       float: none;
@@ -114,26 +116,34 @@ h1 span {
 
   }
 
-  /* Style the class post */
+/* Style the class post */
   .post{
-    border-left: 0.1em solid black;
-    border-bottom: 0.1em solid black;
+    border-left: 0.2em groove lightpink;
+    border-bottom: 0.2em groove lightblue;
     padding: 1em;
   }
 
-  /* Style the class needAuth to indicate the element needs authorization*/
+/* Style the aboutInfo div */
+#aboutInfo {
+  padding: 1em;
+  line-height: 1.5em;
+}
+
+  /* Style the class needAuth to indicate the element needs authorization */
   .needAuth {
-    text-decoration: line-through;
-    text-decoration-color: red;
-    text-decoration-style: solid;
+    visibility: hidden;
+  }
+
+  /* Style the class needAuth to indicate the element needs authorization */
+  .isAuth {
+    visibility: visible;
   }
 
 
-
-  /* This is for the form */
+/* This is for the login form */
   {box-sizing: border-box;}
 
-  /* Button used to open the contact form - fixed at the bottom of the page */
+/* Button used to open the contact form - fixed at the bottom of the page */
   .open-button {
     background-color: #555;
     color: white;
@@ -147,7 +157,7 @@ h1 span {
     width: 280px;
   }
   
-  /* The popup form - hidden by default */
+/* The popup form - hidden by default */
   .form-popup {
     display: none;
     position: fixed;
@@ -157,14 +167,14 @@ h1 span {
     z-index: 9;
   }
   
-  /* Add styles to the form container */
+/* Add styles to the form container */
   .form-container {
     max-width: 300px;
     padding: 10px;
     background-color: white;
   }
   
-  /* Full-width input fields */
+/* Full-width input fields */
   .form-container input[type=text], .form-container input[type=password] {
     width: 90%;
     padding: 15px;
@@ -173,13 +183,13 @@ h1 span {
     background: #f1f1f1;
   }
   
-  /* When the inputs get focus, do something */
+/* When the inputs get focus, do something */
   .form-container input[type=text]:focus, .form-container input[type=password]:focus {
     background-color: #ddd;
     outline: none;
   }
   
-  /* Set a style for the submit/login button */
+/* Set a style for the submit/login button */
   .form-container .btn {
     background-color: #4CAF50;
     color: white;
@@ -191,12 +201,19 @@ h1 span {
     opacity: 0.8;
   }
   
-  /* Add a red background color to the cancel button */
+/* Add a red background color to the cancel button */
   .form-container .cancel {
     background-color: red;
   }
   
-  /* Add some hover effects to buttons */
+/* Add some hover effects to buttons */
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   } 
+
+
+
+
+
+/* This is for the post form */
+

@@ -18,9 +18,7 @@
                 <a onclick='getMostRecentPosts()'>Home</a>
                 <a onclick='getAboutInfo()'>About</a>
                 <a onclick='login()'>Login</a>
-                <!--  Removing this for now as functionality for add post has not been added yet.
-                    <a onclick='addPost()'><span class='needAuth'>Add Post</span></a>
-                -->
+                <a onclick='addPost()'><span class='needAuth' id='addPost'>Add Post</span></a>
             </navbar>
         </div>
         <div id='main-container' class='flex-container'>
@@ -33,7 +31,7 @@
             </div>
         </div>
         <div class="form-popup" id="myForm">
-            <form action="/auth" class="form-container" method="post">
+            <form class="form-container">
               <h1>Login</h1>
           
               <label for="email"><b>Email</b></label>
