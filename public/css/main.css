@@ -89,8 +89,8 @@ h1 span {
     background-color: white;
     width: 60%;
     flex-grow: 3;
-    overflow-y: hidden;
-    height: 100%;
+    overflow-y: scroll;
+    /* height: 100%; */
 }
   
 /* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
@@ -112,6 +112,22 @@ h1 span {
 
     #navbar-container {
         height: 16em;
+    }
+
+    /* Style the filler-left div */
+    #filler-left {
+      background-color: lightblue;
+      width: 1%;
+      float: left;
+      flex-grow: 1;
+    }
+
+    /* Style the filler-right div */
+    #filler-right {
+      background-color: pink;
+      width: 1%;
+      float: right;
+      flex-grow: 1;
     }
 
   }
