@@ -141,10 +141,10 @@ h1 span {
 
 
 /* This is for the login form */
-  {box-sizing: border-box;}
+ /* {box-sizing: border-box;}(/
 
 /* Button used to open the contact form - fixed at the bottom of the page */
-  .open-button {
+/*  .open-button {
     background-color: #555;
     color: white;
     padding: 16px 20px;
@@ -155,14 +155,14 @@ h1 span {
     bottom: 23px;
     right: 28px;
     width: 280px;
-  }
+  }*/
   
 /* The popup form - hidden by default */
   .form-popup {
     display: none;
     position: fixed;
     bottom: 0;
-    right: 15px;
+    left: 0%;
     border: 3px solid #f1f1f1;
     z-index: 9;
   }
@@ -211,9 +211,7 @@ h1 span {
     opacity: 1;
   } 
 
-
-
-
-
 /* This is for the post form */
-
+#content {
+  height: 150px;
+}

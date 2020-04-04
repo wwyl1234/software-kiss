@@ -30,7 +30,6 @@ POOL.on('error', (err, client) => {
   process.exit(-1)
 })
 
-console.log(process.env.DATABASE_URL)
 
 /* Load the homepage */
 app.use(express.static('public'));
@@ -49,7 +48,7 @@ app.listen(PORT, function() {
 /* RESTAPI call GET /posts gets all the posts from the database.*/
  app.get("/posts", (req, response, next) => {
   client.connect();
-  let query = `SELECT (name, to_char("date", 'YYYY-MM-DD'), time,content, meta_tags) 
+  let query = `SELECT (name, date, time,content, meta_tags) 
   FROM posts
   ORDER BY
       date DESC;`
@@ -135,6 +134,36 @@ app.listen(PORT, function() {
      })
      .catch(err => {
        client.release()
+       console.log(err.stack)
+     })
+   })
+});
+
+
+/* RESTAPI call POST /add/post  to add post to blog */
+app.post("/add/post", (req, response, next) => {
+  console.log(req);
+  let name = req.body.name;
+  let date = req.body.date;
+  let content = req.body.content;
+  let metaTags = req.body.meta_tags;
+
+  let query = `INSERT INTO posts (name, date, content, meta_tags) VALUES ('${name}', '${date}', '${content}', '${metaTags}');`
+  console.log(query);
+
+ // use a promise to checkout a client
+ POOL
+   .connect()
+   .then(client => {
+     return client
+       .query(query)
+       .then(res => {
+        response.send({"success" : true});
+        client.release()
+     })
+     .catch(err => {
+       client.release()
+       response.send({"success" : false});
        console.log(err.stack)
      })
    })

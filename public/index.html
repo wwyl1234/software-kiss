@@ -30,7 +30,7 @@
             <div id='filler-right'> 
             </div>
         </div>
-        <div class="form-popup" id="myForm">
+        <div class="form-popup" id="loginForm">
             <form class="form-container">
               <h1>Login</h1>
           
@@ -41,8 +41,25 @@
               <input type="password" placeholder="Enter Password" name="psw" id="psw"required>
           
               <button type="submit" class="btn">Login</button>
-              <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+              <button type="submit" class="btn cancel" onclick="closeLoginForm()">Close</button>
             </form>
-          </div> 
+          </div>
+          <div class="form-popup" id="addPostForm">
+            <form class='form-container'>
+              <h1>Add Post</h1>
+          
+              <label for="name"><b>Name</b></label>
+              <input type="text" placeholder="Enter Title/Name of the Post" name="name" id="name" required>
+          
+              <label for="content"><b>Content</b></label>
+              <input type="text" placeholder="Enter Content in html format" name="content" id="content" required>
+
+              <label for="meta-tags"><b>Meta Tags</b></label>
+              <input type="text" placeholder="Enter Meta tags in csv format (i.e. happy,UI)" name="meta-tags" id="meta-tags" >
+          
+              <button type="submit" class="btn">Submit</button>
+              <button type="submit" class="btn cancel" onclick="closeAddPostForm()">Close</button>
+            </form>
+          </div>  
     </body>
 </html>

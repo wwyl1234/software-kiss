@@ -1,12 +1,23 @@
+// Global Variables to keep track of state
+ISAUTH = false;
+
 
 // When the window loads, get the most recent posts.
 window.onload = function() {
     getMostRecentPosts();
-    let loginForm = document.getElementById("myForm");
+    let loginForm = document.getElementById("loginForm");
     loginForm.addEventListener("submit", function(event){
         event.preventDefault();
         checkCredentials();
     });
+
+    let addPostForm = document.getElementById("addPostForm");
+    addPostForm.addEventListener("submit", function(event){
+        event.preventDefault();
+        // TODO send the post to the server
+        submitPost();
+    });
+
 }
 
 // Loads the About Info in the content-container
@@ -67,16 +78,18 @@ function formatDate(inputDate){
 
 /* Add Post */
 function addPost(){
-    // TODO Check if user has been authenticated
+    // Check if user has been authenticated
     // Launch a form to get info about post
-
+    if (ISAUTH){
+        openAddPostForm();
+    }
 
 }
 
 // Gets the login form.
 function login(){
     // Get info to login
-    openForm();
+    openLoginForm();
 
 }
 
@@ -97,8 +110,9 @@ function checkCredentials(){
             if (result["sucess"] == true) {
                 console.log('User has succesefully logined.')
                 // allow actions that need authentication
+                ISAUTH = true;
                 allowActions();
-                closeForm();
+                closeLoginForm();
 
              } else {
                  console.warn("User has entered incorrect credentials");
@@ -109,15 +123,58 @@ function checkCredentials(){
 
 }
 
+/* Get information from addPost form and sends to server */
+function submitPost(){
+    // Get values from the add Post form
+    let name = document.getElementById('name').value
+    let content = document.getElementById('content').value
+    let metaTags = document.getElementById('meta-tags').value
+
+    let date =  new Date().toJSON();
+    console.log(date);
+
+    xhr = new XMLHttpRequest();
+    xhr.open('POST', 'add/post/');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // Call a function when the state changes.
+    xhr.onreadystatechange = function() { 
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+            let result = JSON.parse(xhr.response)
+            if (result["sucess"] == true) {
+                console.log('User has succesefully added post.')
+                closeLoginForm();
+             } else {
+                 console.warn("Server has failed to add post.");
+             }
+        }
+    }
+    let body = `name=${name}&date=${date}&content=${content}&meta_tags=${metaTags}`;
+    xhr.send(body);
+
+}
+
+
 /* Opens the login form. */
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
+function openLoginForm() {
+    document.getElementById("loginForm").style.display = "block";
   }
 
 /* Closes the login form. */   
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+function closeLoginForm() {
+    document.getElementById("loginForm").style.display = "none";
 } 
+
+/* Opens the add post form. */
+function openAddPostForm() {
+    document.getElementById("addPostForm").style.display = "block";
+  }
+
+/* Closes the add post form. */   
+function closeAddPostForm() {
+    document.getElementById("addPostForm").style.display = "none";
+} 
+
 
 
 /* Runs this only when authenticated. */
