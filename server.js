@@ -124,9 +124,9 @@ app.listen(PORT, function() {
          // Check that res is not empty and matches with password
          let result = {}
          if (res.rows.length != 0 && res.rows[0]["psw"] == psw) {
-            result["sucess"] = true;
+            result["success"] = true;
          } else {
-          result["sucess"] = false;
+          result["success"] = false;
          }
          response.send(result);
          client.release()

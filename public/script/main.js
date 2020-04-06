@@ -107,7 +107,7 @@ function checkCredentials(){
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             // Request finished. Do processing here.
             let result = JSON.parse(xhr.response)
-            if (result["sucess"] == true) {
+            if (result["success"] == true) {
                 console.log('User has succesefully logined.')
                 // allow actions that need authentication
                 ISAUTH = true;
@@ -141,7 +141,7 @@ function submitPost(){
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             // Request finished. Do processing here.
             let result = JSON.parse(xhr.response)
-            if (result["sucess"] == true) {
+            if (result["success"] == true) {
                 console.log('User has succesefully added post.')
                 closeLoginForm();
              } else {
