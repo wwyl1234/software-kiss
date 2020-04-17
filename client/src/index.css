@@ -1,0 +1,57 @@
+
+/* Style the main-container */
+#main-container {
+    width: 100%;
+    height: 35em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+
+}
+
+/* Style the filler-left div */
+#filler-left {
+    background-color: lightblue;
+    width: 20%;
+    float: left;
+    flex-grow: 1;
+}
+
+/* Style the filler-right div */
+#filler-right {
+    background-color: pink;
+    width: 20%;
+    float: right;
+    flex-grow: 1;
+}
+
+
+  
+/* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
+  @media screen and (max-width: 600px) {
+
+    /* Style the filler-left div */
+    #filler-left {
+      background-color: lightblue;
+      width: 1%;
+      float: left;
+      flex-grow: 1;
+    }
+
+    /* Style the filler-right div */
+    #filler-right {
+      background-color: pink;
+      width: 1%;
+      float: right;
+      flex-grow: 1;
+    }
+
+}
+
+
+
+
+
+  
+

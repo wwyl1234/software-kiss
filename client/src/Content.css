@@ -1,0 +1,22 @@
+/* Style the content-container div */
+#content-container{
+    background-color: white;
+    width: 60%;
+    flex-grow: 3;
+    overflow-y: scroll;
+    /* height: 100%; */
+}
+
+/* Style the class post */
+.post{
+    border-left: 0.2em groove lightpink;
+    border-bottom: 0.2em groove lightblue;
+    padding: 1em;
+  }
+
+/* Style the aboutInfo div */
+#aboutInfo {
+  padding: 1em;
+  line-height: 1.5em;
+}
+

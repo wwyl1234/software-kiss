@@ -1,0 +1,18 @@
+/* Style the blog-title-container */
+#blog-title-container {
+    width: 100%;
+    height: 10vh;
+    text-align: center;
+    background-color: black;
+    padding-top: 1em;
+}
+
+/* Style the blog-title */
+h1 {
+    color: lightblue;
+    
+}
+
+h1 span {
+    color: pink;
+}

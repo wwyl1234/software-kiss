@@ -4,10 +4,12 @@ var fs = require('fs');
 var express = require('express');
 const bodyParser = require('body-parser')
 const {Pool, Client } = require('pg');
+const path = require('path')
+
 
 var app = express();
 var router = express.Router();
-const PORT =  process.env.PORT || 80; 
+const PORT =  process.env.PORT || 5000; 
 
 app.use(bodyParser.json())
 app.use(
@@ -31,12 +33,9 @@ POOL.on('error', (err, client) => {
 })
 
 
-/* Load the homepage */
-app.use(express.static('public'));
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'client/build')))
 
-app.get('/', function(req, res){
-  res.render('index.html');
-});
 
 
 app.listen(PORT, function() {
@@ -47,7 +46,6 @@ app.listen(PORT, function() {
 
 /* RESTAPI call GET /posts gets all the posts from the database.*/
  app.get("/posts", (req, response, next) => {
-  client.connect();
   let query = `SELECT (name, date, time,content, meta_tags) 
   FROM posts
   ORDER BY
@@ -168,3 +166,8 @@ app.post("/add/post", (req, response, next) => {
      })
    })
 });
+
+// Anything that doesn't match the above, send back index.html
+//app.get('*', (req, res) => {
+ // res.sendFile(path.join(__dirname + '/client/build/index.html'))
+//})
