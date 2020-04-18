@@ -9,14 +9,16 @@ class Menu extends React.Component {
         return (
             <div id='navbar-container'>
                 <Navbar className='topnav'>
-                    <button id='home' onClick={this.props.onClick()}>Home</button>
-                    <button id='about' onClick={this.props.onClick()}>About</button>
-                    <button id='login' onClick={this.props.onClick()}>Login</button>
-                    <button onClick={this.props.onClick()}>
-                        <span 
-                        className={this.props.isAuthorized ? 'isAuth' : 'needAuth'}  
-                        id='addPost'>Add Post</span>
-                    </button>
+                    
+                        <button id='home' className='btn' onClick={this.props.onClick()}>Home</button>
+                        <button id='about' className='btn' onClick={this.props.onClick()}>About</button>
+                        <button id='login' className='btn' onClick={this.props.onClick()}>Login</button>
+                        <button className='btn' onClick={this.props.onClick()}>
+                            <span 
+                            className={this.props.isAuthorized ? 'isAuth' : 'needAuth'}  
+                            id='addPost'>Add Post</span>
+                        </button>
+                    
                 </Navbar>
             </div>
         );

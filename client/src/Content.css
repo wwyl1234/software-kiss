@@ -4,6 +4,7 @@
     width: 60%;
     flex-grow: 3;
     overflow-y: scroll;
+    overflow-y: scroll;
     /* height: 100%; */
 }
 

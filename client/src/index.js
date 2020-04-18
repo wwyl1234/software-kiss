@@ -200,7 +200,7 @@ class BlogApp extends React.Component {
 
     render(){
         return (
-            <div id='blog-app-container'> 
+            <div id='blog-app-container' className='flex-container'> 
                 <Title />
                 <Menu 
                     isAuthorized={this.state.isAuthorized} 
