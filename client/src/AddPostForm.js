@@ -41,10 +41,11 @@ class AddPostForm extends React.Component {
   } 
 
   textChange = (event) => {
+    let text = event.target.value;
     this.setState(
       function (state) {
         return {
-          value: event.target.value
+          value: text
         };
       }
     )
