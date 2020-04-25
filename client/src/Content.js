@@ -1,5 +1,5 @@
 import React from 'react';
-import marked from 'marked';
+import {Button} from 'react-bootstrap';
 import './Content.css';
 
 const ABOUTINFO = (
@@ -74,9 +74,10 @@ class Content extends React.Component {
     }
 
     renderPosts = () => {
-        // TODO add metatags 
+        
         let posts = [];
         for (let i = 0; i < this.state.data.length; i++){
+            let metaTags = this.state.data[i].meta_tags.split(',');
             let formattedDate = this.formatDate(this.state.data[i].date);
             let output = {__html: this.state.data[i].content}
             posts.push(
@@ -86,7 +87,12 @@ class Content extends React.Component {
                     <div className='content' 
                         dangerouslySetInnerHTML={output}>
                     </div>
-                    
+                    <div className='meta-tags'>
+                        <h5>Meta tags:</h5>
+                        {metaTags.map((metaTag) => {
+                            return <Button disabled variant='outline-primary' key={metaTag}>{metaTag}</Button>
+                        })}
+                    </div>
                 </div>
             )
         }
