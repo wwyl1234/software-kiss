@@ -68,6 +68,27 @@ app.listen(PORT, function() {
  })
 });
 
+/* RESTAPI call GET /posts/total gets total number of posts in the database.*/
+app.get("/posts/total", (req, response, next) => {
+  let query = `SELECT count(*) AS exact_count FROM posts;`
+ // use a promise to checkout a client
+ POOL
+ .connect()
+ .then(client => {
+   return client
+     .query(query)
+     .then(res => {
+       response.send(res.rows);
+       client.release()
+       console.log(res.rows)
+   })
+   .catch(err => {
+     client.release()
+     console.log(err.stack)
+   })
+ })
+});
+
 
  /* RESTAPI call GET /posts/recent/{start}/{num} gets the recent posts from the database.
  start indicates the position (0 being the most recent, 1 being the second most recent) 

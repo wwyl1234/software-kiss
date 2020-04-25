@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import './Content.css';
 
 const ABOUTINFO = (
@@ -14,12 +15,14 @@ class Content extends React.Component {
     constructor(props){
         super(props);
         this.state =  {
-            data: []
+            data: [],
+            pageNum: 0
         };
         this.parseJSON = this.parseJSON.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.getPosts = this.getPosts.bind(this);
         this.updateState = this.updateState.bind(this);
+        this.fetchMoreData = this.fetchMoreData.bind(this);
     }
 
     /* Format Date assuming date is a string in the format YYYY-MM-DDTHH:MM:SS:SSZ (i.e. 2020-03-30T04:00:00.000Z) */
@@ -43,21 +46,41 @@ class Content extends React.Component {
         return response.text() ? JSON.parse(response) : null
     }
 
-    // this loads the first ten posts in blog ...need to do it a better way 
+    // this loads the first ten posts in blog
     getPosts = () => {
-        let url = 'posts/recent/0/10';
+        let url = `posts/recent/0/${this.props.maxPostsPerFetch}`;
         fetch(url)
             .then(res => res.json())
             .then(
                 (result) => {
                     console.log(result);
-                    this.setState({ data: result});
+                    this.setState({data: result});
                 },
                 (err) => {
                     console.log('Fetch Error :-S', err);
                 });
-            }
+    }
 
+    fetchMoreData = () => {
+        let newPageNum = this.state.pageNum + 1;
+        let url = `posts/recent/${newPageNum * this.props.maxPostsPerFetch}/${this.props.maxPostsPerFetch}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    let newData = this.state.data.slice();
+                    newData = newData.concat(result);
+                    console.log(result, newData);
+                    this.setState({
+                        data: newData, 
+                        pageNum: newPageNum});
+                },
+                (err) => {
+                    console.log('Fetch Error :-S', err);
+                });
+        
+    }
+    
     componentDidMount = () => {
         if (this.props.display === 'posts'){
             this.getPosts();
@@ -74,7 +97,6 @@ class Content extends React.Component {
     }
 
     renderPosts = () => {
-        
         let posts = [];
         for (let i = 0; i < this.state.data.length; i++){
             let metaTags = this.state.data[i].meta_tags.split(',');
@@ -96,13 +118,20 @@ class Content extends React.Component {
                 </div>
             )
         }
-        return posts;
+        return ( 
+            <InfiniteScroll
+                dataLength={this.state.data.length}
+                next={this.fetchMoreData}
+                hasMore={this.props.totalPosts - this.state.data.length  >  0 ? true: false}
+                loader={<h4>Loading...</h4>}>{posts}
+            </InfiniteScroll>
+          );
     }
 
-    render(){
+    render = () =>{
         return (
         <div id='content-container'>
-            { this.props.display === 'posts' ? this.renderPosts() : ABOUTINFO }
+            { this.props.display !== 'posts' ?  ABOUTINFO : this.renderPosts()}
         </div>
         );
     }

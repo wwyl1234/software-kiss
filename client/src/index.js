@@ -17,6 +17,8 @@ class BlogApp extends React.Component {
             menuId: 'home',
             visibleLoginForm: false,
             visibleAddPostForm: false,
+            totalPosts: 0,
+            maxPostsPerFetch: 10
         }
     }
     /* Handle menu click */
@@ -52,7 +54,21 @@ class BlogApp extends React.Component {
             );
         
     }
- 
+    /* Gets the total number of Posts  in the blog */
+    getTotalPosts = () => {
+        let url = 'posts/total/';
+        fetch(url)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                    this.setState({totalPosts : result[0]['exact_count']});
+                },
+                (err) => {
+                    console.log('Fetch Error :-S', err);
+                });
+    }
+
     /* Opens the add post form. */
     openAddPostForm = () => {
         this.setState(
@@ -191,7 +207,11 @@ class BlogApp extends React.Component {
                 });
             }
 
-        
+    componentDidMount = () =>{
+        this.getTotalPosts(); 
+        console.log(`Blog mounted:`, this.state)
+    } 
+            
     componentDidUpdate = (prevProps, prevState) => {
         if (prevState != this.state)
             console.log('debiug', this.state) 
@@ -209,7 +229,10 @@ class BlogApp extends React.Component {
                 <div id='main-container' className='flex-container'>
                     <div id='filler-left'>
                     </div>
-                    <Content display={this.state.display}  />
+                    <Content 
+                        display={this.state.display}
+                        totalPosts={this.state.totalPosts}
+                        maxPostsPerFetch={this.state.maxPostsPerFetch}/>
                     <div id='filler-right'>
                     </div>
                 </div>
