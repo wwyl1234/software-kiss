@@ -9,7 +9,6 @@ class Menu extends React.Component {
         return (
             <div id='navbar-container'>
                 <Navbar className='topnav'>
-                    
                         <button id='home' className='btn' onClick={this.props.onClick()}>Home</button>
                         <button id='about' className='btn' onClick={this.props.onClick()}>About</button>
                         <button id='login' className='btn' onClick={this.props.onClick()}>Login</button>

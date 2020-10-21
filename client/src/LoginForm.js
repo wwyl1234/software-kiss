@@ -8,11 +8,11 @@ class LoginForm extends React.Component{
         document.getElementById("loginForm").style.display = "block";
     }
 
-    /* Closes the login form. */   
+    /* Closes the login form. */
     closeLoginForm = () => {
         document.getElementById("loginForm").style.display = "none";
     }
-    
+
     componentDidMount = () => {
         if (this.props.isVisible) {
             this.openLoginForm();

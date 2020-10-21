@@ -29,7 +29,7 @@ class BlogApp extends React.Component {
         let newVisibleAddPostForm = this.state.visibleAddPostForm;
         if (id === 'home') {
             newDisplay = 'posts';
-        } 
+        }
         if (id  === 'about'){
             newDisplay = 'about';
         }
@@ -52,8 +52,8 @@ class BlogApp extends React.Component {
                     }
                 }
             );
-        
-    }
+        }
+
     /* Gets the total number of Posts  in the blog */
     getTotalPosts = () => {
         let url = 'posts/total/';
@@ -80,7 +80,7 @@ class BlogApp extends React.Component {
             );
     }
 
-    /* Closes the add post form. */   
+    /* Closes the add post form. */
     closeAddPostForm = (event) => {
         event.preventDefault();
         this.setState(
@@ -103,7 +103,7 @@ class BlogApp extends React.Component {
             );
     }
 
-    /* Closes the login form. */   
+    /* Closes the login form. */
     closeLoginForm = (event) => {
         event.preventDefault();
         this.setState(
@@ -137,9 +137,9 @@ class BlogApp extends React.Component {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json'
             },
-            body: data  
+            body: data
         })
             .then(res => res.json())
             .then(
@@ -162,7 +162,6 @@ class BlogApp extends React.Component {
                     console.log('Fetch Error :-S', err);
                 });
         }
-        
 
     /* Get information from login form and sends to server to check. */
     checkCredentials = (event) => {
@@ -180,7 +179,7 @@ class BlogApp extends React.Component {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json'
             },
             body: data  
          })
@@ -210,21 +209,20 @@ class BlogApp extends React.Component {
     componentDidMount = () =>{
         this.getTotalPosts(); 
         console.log(`Blog mounted:`, this.state)
-    } 
-            
+    }
+
     componentDidUpdate = (prevProps, prevState) => {
         if (prevState != this.state)
-            console.log('debiug', this.state) 
-    
+            console.log('debiug', this.state)
     }
 
     render(){
         return (
-            <div id='blog-app-container' className='flex-container'> 
+            <div id='blog-app-container' className='flex-container'>
                 <Title />
-                <Menu 
-                    isAuthorized={this.state.isAuthorized} 
-                    onClick={()=>this.handleMenuClick}    
+                <Menu
+                    isAuthorized={this.state.isAuthorized}
+                    onClick={()=>this.handleMenuClick} 
                     />
                 <div id='main-container' className='flex-container'>
                     <div id='filler-left'>
@@ -250,9 +248,6 @@ class BlogApp extends React.Component {
         );
     }
 }
-
-
-
 
 
 

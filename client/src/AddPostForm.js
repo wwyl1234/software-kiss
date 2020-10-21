@@ -29,16 +29,16 @@ class AddPostForm extends React.Component {
   //  let body = `name=${name}&date=${date}&content=${content}&meta_tags=${metaTags}`;
   //  xhr.send(body);
  // }
-    
+
   /* Opens the add post form. */
   openAddPostForm = () => {
     document.getElementById("addPostForm").style.display = "block";
   }
 
-  /* Closes the add post form. */   
+  /* Closes the add post form. */
   closeAddPostForm = () => {
     document.getElementById("addPostForm").style.display = "none";
-  } 
+  }
 
   textChange = (event) => {
     let text = event.target.value;

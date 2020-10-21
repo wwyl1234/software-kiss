@@ -7,8 +7,7 @@ const ABOUTINFO = (
     <div id='aboutInfo'>
         <h2>About</h2>
         <p>This blog is intended to be about software and software-related things. I believe
-        in the KISS principle which stands for Keep It Simple Stupid. 
-        I am currently focused on learning frontend technologies and UI/UX design.</p>
+        in the KISS principle which stands for Keep It Simple Stupid.</p>
     </div>);
  
 class Content extends React.Component {
